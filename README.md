@@ -7,9 +7,13 @@ This note summarizes how to build an **n-controlled single-qubit unitary gate** 
 ## 1. Controlled-U from Decomposition  $U = e^{i\alpha} A X B X C$
 
 If a given single-qubit unitary $U \in U(2)$ can be decomposed as
+
 $$U = e^{i\alpha} A X B X C$$
-where $A, B, C$ are single-qubit unitaries and $X$ is the Pauli-X gate, then a **controlled-U** (control = first qubit, target = second) can be implemented as:
-$$CU = (P(\alpha)\otimes I)\; (I \otimes A)\; CX\; (I \otimes B)\; CX\; (I \otimes C)$$
+
+where $A, B, C$ are single-qubit unitaries where $ABC = I$ and $X$ is the Pauli-X gate, then a **controlled-U** (control = first qubit, target = second) can be implemented as:
+
+$$CU = (P(\alpha)\otimes I) (I \otimes A) CX (I \otimes B) CX (I \otimes C)$$
+
 where $P(\alpha) = \mathrm{diag}(1, e^{i\alpha})$ is a phase gate on the control qubit. This is easily observed by the following circuit diagram:
 <pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">                         ┌──────┐
 q_0: ───────■─────────■──┤ P(α) ├
@@ -24,7 +28,9 @@ This circuit uses **two CNOTs** and a **conditional phase** on the control.
 ## 2. Decomposition of Any  $U \in U(2)$
 
 Every one-qubit unitary has the following decomposition:
+
 $$U = e^{i\alpha} R_z(\phi) R_y(\theta) R_z(\lambda)$$
+
 where
 $$R_z(\gamma) = e^{-i\gamma Z/2}, \qquad R_y(\beta) = e^{-i\beta Y/2}.$$
 
@@ -33,7 +39,7 @@ $$A = R_z(\phi) R_y(\tfrac{\theta}{2}), \quad
 B = R_y(-\tfrac{\theta}{2}) R_z(-\tfrac{\phi+\lambda}{2}), \quad
 C = R_z(\tfrac{\lambda - \phi}{2}).$$
 
-Using the fact that $\;X^2 = I\;$ and $\;X R_*(\eta)X = R(-\eta)\;$, one can verify algebraically that $R_z(\phi) R_y(\theta) R_z(\lambda) = A X B X C$, which gives the desired form $U = e^{i\alpha} A X B X C$.
+Using the fact that $X^2 = I$ and $X R_*(\eta)X = R(-\eta)$, one can verify algebraically that $R_z(\phi) R_y(\theta) R_z(\lambda) = A X B X C$, which gives the desired form $U = e^{i\alpha} A X B X C$.
 
 **In Qiskit:**
 
