@@ -96,4 +96,3 @@ we can efficiently construct **multi-controlled U gates** $C^n U$ for any $U \in
 ### References
 
 - M. A. Nielsen & I. L. Chuang, *Quantum Computation and Quantum Information*, §4.3.1
-- A. Barenco *et al.*, *Elementary gates for quantum computation*, Phys. Rev. A 52 (1995) 3457, §IV.A
